@@ -2,6 +2,8 @@ Raindrop CLI Version 1.0
 
 Raindrop CLI is a developer-focused modification of the standard Gemini CLI. Built by Dakota Rain Lock, it enhances the default CLI experience by introducing persistent context, autonomous memory management, and a background daemon for semantic codebase search.
 
+Please check out my main project at https://github.com/dakotalock/holygrailopensource as well
+
 Key Features
 1. Semantic Codebase Search (Holocron Daemon)
 Raindrop overcomes standard context window limitations by maintaining persistent, searchable awareness of your local workspace.
