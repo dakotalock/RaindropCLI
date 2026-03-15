@@ -1,0 +1,27 @@
+#!/bin/bash
+# Raindrop CLI - Omni-Vision Search
+QUERY="$1"
+if [ -z "$QUERY" ]; then
+    echo "Usage: rd-vision 'your query or string'"
+    exit 1
+fi
+
+BLUE='\033[1;34m'
+CYAN='\033[1;36m'
+NC='\033[0m'
+
+echo -e "${CYAN}--- RAINDROP OMNI-VISION: ${BLUE}$QUERY${CYAN} ---${NC}"
+
+# 1. Semantic Search (Holocron)
+echo -e "\n${BLUE}[NEURAL MATCHES]${NC}"
+$HOME/.raindrop/bin/holocron "$QUERY" | head -n 10
+
+# 2. Literal Search (Grep)
+echo -e "\n${BLUE}[LITERAL MATCHES]${NC}"
+grep -rn "$QUERY" . --exclude-dir={node_modules,.git,venv} | head -n 5 | sed "s/^/${CYAN}[FILE] /"
+
+# 3. Filename Search (Find)
+echo -e "\n${BLUE}[PATH MATCHES]${NC}"
+find . -iname "*$QUERY*" -not -path "*/.*" -not -path "*/node_modules/*" | head -n 5 | sed "s/^/${CYAN}[PATH] /"
+
+echo -e "\n${CYAN}--- END OF VISION ---${NC}"

@@ -1,0 +1,40 @@
+#!/bin/bash
+# Raindrop CLI - System Initialization
+
+BLUE='\033[1;34m'
+CYAN='\033[1;36m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}"
+echo " ██████╗  █████╗ ██╗███╗   ██╗██████╗ ██████╗  ██████╗ ██████╗ "
+echo " ██╔══██╗██╔══██╗██║████╗  ██║██╔══██╗██╔══██╗██╔═══██╗██╔══██╗"
+echo " ██████╔╝███████║██║██╔██╗ ██║██║  ██║██████╔╝██║   ██║██████╔╝"
+echo " ██╔══██╗██╔══██║██║██║╚██╗██║██║  ██║██╔══██╗██║   ██║██╔═══╝ "
+echo " ██║  ██║██║  ██║██║██║ ╚████║██████╔╝██║  ██║╚██████╔╝██║     "
+echo " ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝     "
+echo -e "${CYAN}--- RAINDROP CLI MOD-X | CREATED BY DAKOTA RAIN LOCK ---${NC}"
+echo ""
+
+# 1. Check Holocron Status
+if curl -s "http://localhost:6666/docs" > /dev/null; then
+    echo -e "${CYAN}[SYSTEM]${NC} Holocron Neural Index: ${BLUE}ONLINE & SYNCED${NC}"
+else
+    echo -e "${CYAN}[SYSTEM]${NC} Holocron Neural Index: ${NC}OFFLINE (Run 'holocron-start')${NC}"
+fi
+
+# 2. Git Status Check
+if [ -d .git ]; then
+    BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    CHANGES=$(git status --porcelain | wc -l)
+    echo -e "${CYAN}[SYSTEM]${NC} Branch: ${BLUE}$BRANCH${NC} | Local Changes: ${BLUE}$CHANGES${NC}"
+fi
+
+# 3. Project Pulse (Hot Files)
+if [ -d .git ]; then
+    HOT_FILE=$(git log --pretty=format: --name-only -n 20 | sort | uniq -c | sort -rg | head -n 1 | awk '{print $2}')
+    if [ ! -z "$HOT_FILE" ]; then
+        echo -e "${CYAN}[SYSTEM]${NC} Activity Hotspot: ${BLUE}$HOT_FILE${NC}"
+    fi
+fi
+
+echo ""

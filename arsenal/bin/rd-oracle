@@ -1,0 +1,27 @@
+#!/bin/bash
+# Raindrop CLI - Oracle Context Injector
+QUERY="$1"
+if [ -z "$QUERY" ]; then
+    echo "Usage: rd-oracle 'query'"
+    exit 1
+fi
+
+# Query Holocron for top 3 results
+RESPONSE=$(curl -s -X POST "http://localhost:6666/query" \
+     -H "Content-Type: application/json" \
+     -d "{\"query\": \"$QUERY\", \"top_k\": 3}")
+
+# Output formatted context for the LLM
+echo "$RESPONSE" | python3 -c "
+import sys, json
+try:
+    data = json.load(sys.stdin)
+    print('\n--- HOLOCRON CONTEXT INJECTION ---')
+    for item in data:
+        print(f'FILE: {item[\"path\"]} (Score: {item[\"score\"]:.2f})')
+        print('CODE:')
+        print(item[\"content\"])
+        print('---')
+except Exception as e:
+    pass
+"

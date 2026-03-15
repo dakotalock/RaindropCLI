@@ -7,3 +7,37 @@
   @app.on_event("startup")
 INFO:     Started server process [2050]
 INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:6666 (Press CTRL+C to quit)
+Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<watcher() done, defined at /home/dakot/.raindrop/holocron/server.py:98> exception=ExceptionGroup('unhandled errors in a TaskGroup', [WatchfilesRustInternalError('error in underlying watcher: IO error for operation on ./holy-grail-app-1750660968/public: Permission denied (os error 13) about ["./holy-grail-app-1750660968/public"]')])>
+  + Exception Group Traceback (most recent call last):
+  |   File "/home/dakot/.raindrop/holocron/server.py", line 101, in watcher
+  |     async for changes in awatch('.', recursive=True):
+  |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/watchfiles/main.py", line 263, in awatch
+  |     async with anyio.create_task_group() as tg:
+  |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 781, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/watchfiles/main.py", line 265, in awatch
+    |     raw_changes = await anyio.to_thread.run_sync(watcher.watch, debounce, step, timeout, stop_event_)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2485, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "/home/dakot/graillm_venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 976, in run
+    |     result = context.run(func, *args)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    | _rust_notify.WatchfilesRustInternalError: error in underlying watcher: IO error for operation on ./holy-grail-app-1750660968/public: Permission denied (os error 13) about ["./holy-grail-app-1750660968/public"]
+    +------------------------------------
+Loading model sentence-transformers/all-MiniLM-L6-v2...
+Model loaded.
+Scanning ....
+Starting watcher...
+Index built. 182 files indexed.
+INFO:     127.0.0.1:40684 - "GET /docs HTTP/1.1" 200 OK
