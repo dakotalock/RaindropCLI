@@ -1,0 +1,35 @@
+#!/bin/bash
+# Raindrop CLI - Holocron Client
+QUERY="$1"
+if [ -z "$QUERY" ]; then
+    echo "Usage: holocron 'your question'"
+    exit 1
+fi
+
+# Check if server is up
+if ! curl -s "http://localhost:6666/docs" > /dev/null; then
+    echo "Holocron Daemon is offline. Launching it..."
+    $HOME/.raindrop/bin/holocron-start
+    echo "Waiting for initialization..."
+    sleep 5
+fi
+
+RESPONSE=$(curl -s -X POST "http://localhost:6666/query" \
+     -H "Content-Type: application/json" \
+     -d "{\"query\": \"$QUERY\", \"top_k\": 3}")
+
+echo "$RESPONSE" | python3 -c "
+import sys, json
+try:
+    data = json.load(sys.stdin)
+    if not data:
+        print('No relevant code found.')
+    for i, item in enumerate(data):
+        score = item.get('score', 0)
+        path = item.get('path', 'unknown')
+        content = item.get('content', '')
+        print(f'\033[1;34m[Result {i+1}] \033[1;36m{path} \033[0m(Score: {score:.2f})')
+        print(f'\033[37m{content[:300].replace(chr(10), \" \")}...\033[0m\n')
+except Exception as e:
+    print('Error parsing response:', e)
+"

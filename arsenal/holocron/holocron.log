@@ -1,0 +1,9 @@
+/home/dakot/.raindrop/holocron/server.py:92: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [2050]
+INFO:     Waiting for application startup.
