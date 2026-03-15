@@ -1,0 +1,19 @@
+#!/bin/bash
+# Raindrop CLI - Visor Command Helper
+CMD="$1"
+VALUE="$2"
+
+case $CMD in
+  "goto")
+    curl -s -X POST "http://localhost:7777/goto" -H "Content-Type: application/json" -d "{\"url\": \"$VALUE\"}"
+    ;;
+  "eval")
+    curl -s -X POST "http://localhost:7777/eval" -H "Content-Type: application/json" -d "{\"code\": \"$VALUE\"}"
+    ;;
+  "look")
+    curl -s "http://localhost:7777/snapshot"
+    ;;
+  *)
+    echo "Usage: visor-cmd [goto|eval|look] [value]"
+    ;;
+esac

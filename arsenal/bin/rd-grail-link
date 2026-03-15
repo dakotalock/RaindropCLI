@@ -1,0 +1,13 @@
+#!/bin/bash
+# Raindrop CLI - Holy Grail Uplink
+# Uses the Holy Grail backend to browse the web autonomously
+URL="$1"
+if [ -z "$URL" ]; then
+    echo "Usage: rd-grail-link 'https://target.com'"
+    exit 1
+fi
+
+echo "Requesting data from Holy Grail Eye..."
+# Hit your Flask backend proxy endpoint (assuming Port 5000)
+# We use the proxy endpoint you have in your backend
+curl -s "http://localhost:5000/proxy?url=$URL" | head -n 100

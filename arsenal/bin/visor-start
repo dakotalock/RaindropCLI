@@ -1,0 +1,6 @@
+#!/bin/bash
+# Raindrop CLI - Ghost Visor Launcher (Headless Chromium)
+cd ~/.raindrop/visor
+# Use node to launch the Ghost Visor
+nohup node ghost.js > visor.log 2>&1 &
+echo "Ghost Visor (Headless) launched on Port 7777."

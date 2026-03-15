@@ -1,0 +1,11 @@
+Visor Control Server active on Port 7777
+[3674:0314/233150.920967:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[3674:0314/233152.303234:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[3674:0314/233153.305914:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[3674:0314/233153.757982:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/user/1000/bus: No such file or directory
+[3674:0314/233207.676801:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[3674:0314/233208.435053:ERROR:content/browser/network_service_instance_impl.cc:608] Network service crashed or was terminated, restarting service.
+[3674:0314/233222.222443:ERROR:content/browser/network_service_instance_impl.cc:608] Network service crashed or was terminated, restarting service.
+[3674:0314/233222.260713:ERROR:content/common/zygote/zygote_communication_linux.cc:291] Failed to send GetTerminationStatus message to zygote
+[3674:0314/233222.325450:ERROR:content/browser/gpu/gpu_process_host.cc:990] GPU process launch failed: error_code=1002
+[3674:0314/233222.342520:ERROR:content/browser/gpu/gpu_process_host.cc:990] GPU process launch failed: error_code=1002

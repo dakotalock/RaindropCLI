@@ -18,10 +18,10 @@ $HOME/.raindrop/bin/holocron "$QUERY" | head -n 10
 
 # 2. Literal Search (Grep)
 echo -e "\n${BLUE}[LITERAL MATCHES]${NC}"
-grep -rn "$QUERY" . --exclude-dir={node_modules,.git,venv} | head -n 5 | sed "s/^/${CYAN}[FILE] /"
+grep -rn "$QUERY" . --exclude-dir={node_modules,.git,venv} 2>/dev/null | head -n 5 | sed "s|^|${CYAN}[FILE] |"
 
 # 3. Filename Search (Find)
 echo -e "\n${BLUE}[PATH MATCHES]${NC}"
-find . -iname "*$QUERY*" -not -path "*/.*" -not -path "*/node_modules/*" | head -n 5 | sed "s/^/${CYAN}[PATH] /"
+find . -iname "*$QUERY*" -not -path "*/.*" -not -path "*/node_modules/*" 2>/dev/null | head -n 5 | sed "s|^|${CYAN}[PATH] |"
 
 echo -e "\n${CYAN}--- END OF VISION ---${NC}"
