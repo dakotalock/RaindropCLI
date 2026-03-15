@@ -1,4 +1,3 @@
-Raindrop CLI
 Raindrop CLI is a developer-focused modification of the standard Gemini CLI. Built by Dakota Rain Lock, it enhances the default CLI experience by introducing persistent context, autonomous memory management, and a background daemon for semantic codebase search.
 
 Key Features
